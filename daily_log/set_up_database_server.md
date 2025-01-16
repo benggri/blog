@@ -96,11 +96,11 @@
             nmcli d
             # The command results are displayed in a neat format (with colors as well).
             ```
-            DEVICE | TYPE | STATE | CONNECTION
-            --- | --- | --- | --- 
-            enp1s0 | ethernet | connected | netpaln-enp1s0
-            docker0 | bridge | connected (externally) | docker0
-            another2 | wifi | disconnected | --
+            DEVICE | TYPE | STATE | CONNECTION | Color 
+            --- | --- | --- | --- | ---
+            enp1s0 | ethernet | connected | netpaln-enp1s0 | green
+            docker0 | bridge | connected (externally) | docker0 | gray
+            another2 | wifi | disconnected | -- | red
            
 
 
