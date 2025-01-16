@@ -96,7 +96,7 @@
             nmcli d
             ```
             - The command results are displayed in a neat format (with colors as well).
-            - This is sample
+            - This is sample.
             DEVICE | TYPE | STATE | CONNECTION
             --- | --- | --- | --- 
             enp1s0 | ethernet | connected | netpaln-enp1s0
