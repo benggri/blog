@@ -48,4 +48,30 @@
     newgrp docker
     ```
 1. Setting up a static IP
-(I just thought, shouldn't the Database Server have a static IP?)
+    - (I just thought, shouldn't the Database Server have a static IP?)
+    1. I have modified the **.yaml** file in the **/etc/netplan** folder.
+        ```bash
+        cd /etc/netplan
+        sudo cp <file_name>.yaml <file_name>.yaml
+        ```
+        ```yaml
+        network:
+            version: 2
+            renderer: NerworkManager
+            ethernets:
+                enp1s0:
+                    dhcp4: no
+                    addresses:
+                        - <static_ip_to_be_used>/24
+                    routes:
+                        - to: default
+                          via: <gateway_ip>
+                    nameservers:
+                        addresses:
+                            - 8.8.8.8
+                            - 8.8.4.4
+        ```
+    1. Finding the gateway IP
+        1. Naturally, I thought I could find it using the **ifconfig** command.
+        1. I wondered if I could find it with the **route** command, but that wasn't the case.
+        1. It turns out I could find it using the **ip route** command.
