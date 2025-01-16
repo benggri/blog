@@ -94,8 +94,8 @@
         3. How to use it
             ```bash
             nmcli d
+            # The command results are displayed in a neat format (with colors as well).
             ```
-            - The command results are displayed in a neat format (with colors as well).
             DEVICE | TYPE | STATE | CONNECTION
             --- | --- | --- | --- 
             enp1s0 | ethernet | connected | netpaln-enp1s0
