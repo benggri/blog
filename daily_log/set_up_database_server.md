@@ -101,7 +101,13 @@
             enp1s0 | ethernet | connected | netpaln-enp1s0 | green
             docker0 | bridge | connected (externally) | docker0 | gray
             another2 | wifi | disconnected | -- | red
-           
+1. Install **openssh-server**
+    ```bash
+    sudo apt-get install openssh-server
+    ```
+    ```bash
+    sudo service ssh status
+    ```
 
 
 
