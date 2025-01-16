@@ -101,7 +101,7 @@
             --- | --- | --- | --- 
             enp1s0 | ethernet | connected | netpaln-enp1s0
             docker0 | bridge | connected (externally) | docker0
-            another2 | wifi | disconnected | --
+            another2 | wifi | disconnected | 
            
 
 
