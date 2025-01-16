@@ -52,14 +52,15 @@
     1. I have modified the **.yaml** file in the **/etc/netplan** folder.
         ```bash
         cd /etc/netplan
-        sudo cp <file_name>.yaml <file_name>.yaml
+        sudo cp <file_name>.yaml <file_name>.yaml # I make a copy for backup before restoring.
         ```
+        - file
         ```yaml
         network:
             version: 2
             renderer: NerworkManager
             ethernets:
-                enp1s0:
+                enp1s0: <= might vary depending on the device
                     dhcp4: no
                     addresses:
                         - <static_ip_to_be_used>/24
@@ -75,3 +76,30 @@
         1. Naturally, I thought I could find it using the **ifconfig** command.
         1. I wondered if I could find it with the **route** command, but that wasn't the case.
         1. It turns out I could find it using the **ip route** command.
+        - (Actually, I executed many more commands besides these...)
+    1. After modifying the file, I apply the changes.
+        ```bash
+        sudo netplan apply
+        ```
+        - Then, I verify if the changes have been applied correctly.
+        ```bash
+        ping -c 4 8.8.8.8
+        nslookup google.com
+        ```
+    - Useful tools related to IP and networking?
+        1. Install nmcli
+            ```bash
+            sudo apt-get install network-manager
+            ```
+        3. How to use it
+            ```bash
+            nmcli d
+            ```
+            DEVICE | TYPE | STATE | CONNECTION
+            --- | --- | --- | --- 
+            enp1s0 | ethernet | connected | netpaln-enp1s0
+           
+
+
+
+
