@@ -9,7 +9,7 @@
 
 1. Install ubuntu server 24.04
     - I didn’t install OpenSSH or Docker during the Ubuntu Server installation.
-2. Docker install
+1. Docker install
     ```bash
     # Remove the existing Docker installation (if it is already installed).
     sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -47,3 +47,5 @@
     sudo usermod -aG docker $USER
     newgrp docker
     ```
+1. Setting up a static IP
+(I just thought, shouldn't the Database Server have a static IP?)
