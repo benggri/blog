@@ -7,6 +7,8 @@
 
 ## Database server set up log
 
+### Set up Default 
+
 1. Install ubuntu server 24.04
     - I didn’t install OpenSSH or Docker during the Ubuntu Server installation.
 1. Docker install
@@ -41,6 +43,8 @@
     docker --version
     
     docker images
+
+    sudo systemctl enable docker
 
     # If you encounter a "Permission denied" error, please run the command below.
     sudo chmod 777 /var/run/docker.sock
@@ -109,6 +113,13 @@
     sudo service ssh status
     ```
 
+### Set up PostgreSQL
+
+### Set up MongoDB
+
+### Set up Redis
+
+### Set up Kafka
 
 
 
