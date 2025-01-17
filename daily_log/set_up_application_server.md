@@ -7,6 +7,8 @@
 
 ## Application server set up log
 
+### Set up Default 
+
 1. Install ubuntu server 24.04
     - I didn’t install OpenSSH or Docker during the Ubuntu Server installation.
 1. Docker install
@@ -110,6 +112,8 @@
     ```bash
     sudo service ssh status
     ```
+
+### Set up Kubernetes
 
 1. Install **kubernetes**
 
