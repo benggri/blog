@@ -248,7 +248,7 @@
             ```bash
             kubectl taint nodes <NODE_NAME> node-role.kubernetes.io/control-plane-
             ```
-            - (Note: The - at the end of the command is crucial.)
+            - (Note: The **-** at the end of the command is crucial.)
 
         1. Finally, re-run **kubectl get all** and verify that the **STATUS** has changed.
 
