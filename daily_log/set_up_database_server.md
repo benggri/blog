@@ -58,7 +58,7 @@
         ```yaml
         network:
             version: 2
-            renderer: NerworkManager
+            renderer: NetworkManager
             ethernets:
                 enp1s0: <= might vary depending on the device
                     dhcp4: no
