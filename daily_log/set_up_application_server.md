@@ -134,3 +134,21 @@
 
     sudo systemctl enable --now kubelet
     ```
+
+1. Run **kubernetes**
+    ```bash
+    kubeadmin init
+    ```
+    - An error related to containerd has occurred.
+        - kubeadm init failed to create new cri runtime service~~
+        ```bash
+        sudo rm /etc/containerd/config.toml
+        sudo systemctl restart containerd
+        sudo kubeadm init
+        ```
+
+
+
+
+
+
