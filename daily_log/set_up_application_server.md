@@ -137,7 +137,7 @@
 
 1. Run **kubernetes**
     ```bash
-    kubeadmin init
+    sudo kubeadmin init
     ```
     - An error related to containerd has occurred.
         - kubeadm init failed to create new cri runtime service~~
