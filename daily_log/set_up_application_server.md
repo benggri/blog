@@ -115,6 +115,9 @@
 
 ### Set up Kubernetes
 
+- 2025-01-18 : Setting up a single-node Kubernetes cluster on a single Ubuntu Server (24.04).
+    - I plan to add a worker node once I earn some more money and purchase additional computers.😂
+
 1. Install **kubernetes**
 
     1. References
