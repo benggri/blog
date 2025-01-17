@@ -42,6 +42,8 @@
     
     docker images
 
+    sudo systemctl enable docker
+
     # If you encounter a "Permission denied" error, please run the command below.
     sudo chmod 777 /var/run/docker.sock
     sudo usermod -aG docker $USER
@@ -110,6 +112,7 @@
     ```
 
 1. Install **kubernetes**
+
     1. References
         - [Installing kubeadm, kubelet and kubectl](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl)
         - [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
@@ -119,7 +122,7 @@
     ```bash
     sudo apt-get update
     # apt-transport-https may be a dummy package; if so, you can skip that package
-    sudo apt-get install -y apt-transport-https
+    sudo apt-get install -y apt-transport-https software-properties-common
 
     # If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
     # sudo mkdir -p -m 755 /etc/apt/keyrings
@@ -135,19 +138,61 @@
     sudo systemctl enable --now kubelet
     ```
 
-1. Run **kubernetes**
+1. Turn Off swap
+
+   ```bash
+   sudo swapoff -a
+   sudo sed -i '/swap/d' /etc/fstab
+   ```
+
+1. set up iptables
+
     ```bash
-    sudo kubeadmin init
+    cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+    overlay
+    br_netfilter
+    EOF
+
+    sudo modprobe overlay
+    sudo modprobe br_netfilter
     ```
-    - An error related to containerd has occurred.
-        - kubeadm init failed to create new cri runtime service~~
-        ```bash
-        sudo rm /etc/containerd/config.toml
-        sudo systemctl restart containerd
-        sudo kubeadm init
-        ```
 
+    ```bash
+    cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+    net.bridge.bridge-nf-call-iptables = 1
+    net.bridge.bridge-nf-call-ip6tables = 1
+    net.ipv4.ip_forward = 1
+    EOF
 
+    sudo sysctl --system
+    ```
+
+1. set up containerd
+
+    ```bash
+    sudo mkdir -p /etc/containerd
+    sudo containerd config default | sudo tee /etc/containerd/config.toml
+    sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+    sudo systemctl restart containerd
+    ```
+
+1. pull kubeadm image
+
+    ```bash
+    sudo kubeadm config images pull
+    ```
+
+1. Run **kubernetes**
+
+    ```bash
+    sudo kubeadmin init --cri-socket /var/run/containerd/containerd.sock
+    ```
+
+    ```bash
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    ```
 
 
 
