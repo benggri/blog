@@ -194,6 +194,62 @@
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```
 
+1. Running a Pod (Using a Deployment)
 
+    - (Deployment yaml)[https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment]
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+      labels:
+        app: nginx
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: nginx
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:1.14.2
+            ports:
+            - containerPort: 80
+    ```
+    - When you run the command **kubectl apply -f deployment.yaml**, it creates a Deployment, ReplicaSet, and Pod.
+    - By executing the command **kubectl get all**, you can see that the Pod's **STATUS** is Pending.
+    - To proceed, follow these steps:
+
+        1. Run **kubectl get nodes** to check the **NAME** of the node.
+            ```bash
+            kubectl get nodes
+
+            NAME        STATUS ROLES         AGE VERSION
+            <NODE_NAME> Ready  control-plane 1m  v1.32.1
+            ```
+
+        1. Execute **kubectl describe node <NODE_NAME>** to examine the node.
+            ```bash
+            kubectl describe node <NODE_NAME>
+            kubectl describe node <NODE_NAME> | grep Taint
+
+            Taints: node-role.kubernetes.io/control-plane:NoSchedule
+            ```
+
+        1. Look for the Taint section.
+            - It will likely show node-role.kubernetes.io/control-plane:**NoSchedule**
+            - The **NoSchedule** setting is the reason why the Pod cannot be created.
+
+        1. Remove the Taint by running:
+            ```bash
+            kubectl taint nodes <NODE_NAME> node-role.kubernetes.io/control-plane-
+            ```
+            - (Note: The - at the end of the command is crucial.)
+
+        1. Finally, re-run **kubectl get all** and verify that the **STATUS** has changed.
 
 
