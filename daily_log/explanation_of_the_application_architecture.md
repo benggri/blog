@@ -84,17 +84,17 @@ flowchart LR
 flowchart LR
     subgraph k8s[Cluster]
         direction LR
-        subgraph app1[Application A]
+        subgraph app1[Application]
             direction LR
-            FE1@{ shape: processes, label: "Frontend A Deployment" }
-            BFF1@{ shape: processes, label: "BFF A Deployment" }
-            BE1@{ shape: processes, label: "Backend A Deployment" }
+            FE1@{ shape: processes, label: "Frontend Deployment" }
+            BFF1@{ shape: processes, label: "BFF Deployment" }
+            BE1@{ shape: processes, label: "Backend Deployment" }
         end
-        subgraph app2[Application B]
+        subgraph app2[Application]
             direction LR
-            FE2@{ shape: processes, label: "Frontend B Deployment" }
-            BFF2@{ shape: processes, label: "BFF B Deployment" }
-            BE2@{ shape: processes, label: "Backend B Deployment" }
+            FE2@{ shape: processes, label: "Frontend Deployment" }
+            BFF2@{ shape: processes, label: "BFF Deployment" }
+            BE2@{ shape: processes, label: "Backend Deployment" }
         end
         subgraph bat[Batch]
             direction LR
