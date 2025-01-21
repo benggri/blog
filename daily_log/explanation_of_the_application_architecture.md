@@ -26,6 +26,7 @@ flowchart LR
 | Batch | Spring boot(3.4.1, Quartz or another) |
 | PostgreSQL | 16 |
 | MongoDB | 8.0 |
+| Redis | 8.0 |
 | Kafka | for kafka CDC(debezium/kafka:3.0.0.Final) |
 | connect | for kafka CDC(debezium/connect:3.0.0.Final) |
 | zookeeper | for kafka CDC(debezium/zookeeper:3.0.0.Final) |
