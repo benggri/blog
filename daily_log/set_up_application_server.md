@@ -67,7 +67,7 @@
                 enp1s0: <= might vary depending on the device
                     dhcp4: no
                     addresses:
-                        - <static_ip_to_be_used>/24
+                        - <static_ip_to_be_used>/32
                     routes:
                         - to: default
                           via: <gateway_ip>
